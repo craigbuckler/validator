@@ -1,0 +1,19 @@
+{
+  "name": "validator",
+  "version": "0.0.1",
+  "description": "Generic form validator",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Craig Buckler",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^0.8.0",
+    "gulp": "^3.6.0",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-changed": "^0.3.0",
+    "gulp-imagemin": "^0.2.0",
+    "gulp-sass": "^0.7.1"
+  }
+}

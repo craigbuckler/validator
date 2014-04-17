@@ -1,0 +1,97 @@
+fieldset {
+  padding: 1em 1.5em;
+  margin-bottom: 1em;
+  background: lighten($errol-grey, 85%);
+  border: solid 1px $grey;
+}
+
+legend {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0 2px;
+  color: $errol-grey;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-right: 0.75em;
+  margin-bottom: 0.25em;
+  color: lighten($errol-grey, 20%);
+
+  .help {
+    display: none;
+  }
+}
+
+input,
+textarea,
+select,
+button {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+input,
+textarea,
+button {
+  width: 100%;
+  font-family: inherit;
+  border: none;
+  padding: 0.75em 2em;
+  color: $granite;
+  background-color: $grey-f9;
+  border: 1px solid $grey-e0;
+  transition: background-color 0.5s ease;
+}
+
+input {
+  &::-webkit-input-placeholder { color: lighten($granite, 25%); }
+  &::-moz-placeholder { color: lighten($granite, 25%); }
+  &:-ms-input-placeholder { color: lighten($granite, 25%); }
+  &::placeholder { color: lighten($granite, 25%); }
+}
+
+input[type='checkbox'],
+input[type="radio"] {
+  clear: left;
+  display: inline-block;
+  width: auto;
+  margin-right: 0.5em;
+  margin-bottom: 0.25em;
+}
+
+label:last-child {
+  input[type='checkbox'],
+  input[type="radio"] {
+    margin-bottom: 1em;
+  }
+}
+
+textarea {
+  min-height: 6em;
+}
+
+button {
+  width: 10em;
+}
+
+input[type='button'],
+button[type='submit'] {
+  color: $white;
+  background-color: $peter-blue;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($errol-orange, 10%);
+  }
+}
+
+input[type='reset'] {
+  background-color: $errol-danger;
+
+  &:hover {
+    background-color: darken($errol-danger, 10%);
+  }
+}

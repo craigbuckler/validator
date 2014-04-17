@@ -1,0 +1,8 @@
+# node
+node_modules
+
+# compiled
+css/styles.css
+images/*.jpg
+images/*.png
+images/*.gif

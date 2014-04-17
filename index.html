@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Generic Form Validator</title>
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui" />
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<h1>Generic form validator</h1>
+
+
+<form action="index.html" method="post" data-module="validate">
+
+  <fieldset>
+    <legend>Fieldset one</legend>
+
+    <div>
+      <label for="name">your name <span class="help">must be entered</span></label>
+      <input type="text" id="name" name="name" placeholder="name" required="required" />
+    </div>
+
+    <div>
+      <label for="email">your email <span class="help">must be entered</span></label>
+      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" />
+    </div>
+
+    <div>
+      <label for="dob">date of birth <span class="help">must be entered in the format DD-MM-YYYY</span></label>
+      <input type="date" id="dob" name="dob" required="required" />
+    </div>
+
+    <div>
+      <label><input type="radio" id="browser1" name="browser" value="Chrome" /> I use Google Chrome</label>
+      <label><input type="radio" id="browser2" name="browser" value="Firefox" /> I use Mozilla Firefox</label>
+      <label><input type="radio" id="browser3" name="browser" value="Safari" /> I use Apple Safari</label>
+      <label><input type="radio" id="browser4" name="browser" value="IE" /> I use Microsoft Internet Explorer</label>
+      <label><input type="radio" id="browser5" name="browser" value="Opera" /> I use Opera</label>
+    </div>
+
+    <div>
+      <label for="age">your age group</label>
+      <select id="age" name="age">
+        <option value="">please select</option>
+        <optgroup label="child">
+          <option value="9">0 - 9</option>
+          <option value="15">10 - 15</option>
+          <option value="18">16 - 18</option>
+        </optgroup>
+        <optgroup label="adult">
+          <option value="29">19 - 29</option>
+          <option value="49">30 - 49</option>
+          <option value="69">50 - 69</option>
+          <option value="70">70+</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div>
+      <label for="comments">comments</label>
+      <textarea id="comments" name="comments" rows="5" cols="20"></textarea>
+    </div>
+
+    <div>
+      <label><input type="checkbox" id="spam" name="spam" /> I want to be spammed</label>
+    </div>
+
+  </fieldset>
+
+  <div>
+    <button type="submit">Submit</button>
+  </div>
+
+</form>
+
+<p>Still requires various form elements and datalists</p>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/validator.js"></script>
+
+</body>
+</html>

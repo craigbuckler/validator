@@ -1,0 +1,96 @@
+fieldset {
+  background: lighten($errol-grey, 85%);
+  border: solid 1px grey;
+  padding: em(24px);
+}
+
+legend {
+  color: $errol-grey;
+  font-size: em(14px);
+  padding: 0;
+  text-transform: uppercase;
+}
+
+label {
+  color: lighten($errol-grey, 20%);
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-right: em(12px);
+}
+
+textarea {
+  background: lighten($errol-grey, 77%);
+  border: none;
+  color: $errol-grey;
+  min-height: em(100px);
+  padding: em(18px);
+  width: 95%;
+
+  &:focus {
+    background: lighten($errol-grey, 67%);
+  }
+}
+
+input,
+label,
+textarea {
+  margin-bottom: em(12px);
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='button'],
+input[type='reset'],
+input[type='submit'],
+input[type='tel'],
+button {
+  border: none;
+  color: $granite;
+  background-color: $grey-f9;
+  padding: em(12px) em(32px);
+  border: 1px solid $grey-e0;
+  transition: background-color 0.5s ease;
+}
+
+input[type='button'],
+button[type='submit'] {
+  background-color: $errol-orange;
+
+  &:hover {
+    background-color: darken($errol-orange, 10%);
+  }
+}
+
+input[type='submit'],
+button[type='submit'] {
+  background-color: $peter-blue;
+  color: $white;
+}
+
+input[type="radio"] {
+  margin-right: em(6px);
+}
+
+input[type='reset'] {
+  background-color: $errol-danger;
+
+  &:hover {
+    background-color: darken($errol-danger, 10%);
+  }
+}
+
+form {
+
+  ::-webkit-input-placeholder,
+  ::-moz-placeholder,
+  :-ms-input-placeholder,
+  :-moz-placeholder {
+    color: lighten($errol-grey, 35%);
+  }
+
+  [placeholder] {
+    color: lighten($errol-grey, 35%);
+  }
+}
+
