@@ -6,6 +6,8 @@
   npm install --save-dev -g gulp
   npm install --save-dev gulp
   npm install --save-dev gulp-changed gulp-sass gulp-autoprefixer gulp-imagemin browser-sync
+
+  If a package.json file has been defined, '[sudo] npm install' will install dependencies.
 */
 
 // include gulp and plug-ins
