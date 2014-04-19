@@ -1,5 +1,8 @@
-(function(Plymouth){
-  var plymouth_modules = {};
+(function (Plymouth) {
+
+	"use strict";
+
+	var plymouth_modules = {};
 
   Plymouth.Modules = {
     register: function Register(id, handler) {
@@ -18,4 +21,4 @@
 
   $(initalize_modules);
 
-})(window.Plymouth = window.Plymouth || {});
+}(window.Plymouth = window.Plymouth || {}));
