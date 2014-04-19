@@ -9,7 +9,7 @@
   "author": "Craig Buckler",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^0.8.0",
+    "browser-sync": "^0.8.1",
     "gulp": "^3.6.0",
     "gulp-autoprefixer": "0.0.7",
     "gulp-changed": "^0.3.0",
