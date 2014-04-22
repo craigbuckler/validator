@@ -12,20 +12,52 @@
 
 <h1>Generic form validator</h1>
 
-
-<form action="index.html" method="post" data-module="validate">
+<form action="/" method="post" data-module="validate">
 
   <fieldset>
-    <legend>Fieldset one</legend>
+    <legend>Personal details</legend>
 
     <div>
-      <label for="name">your name <span class="help">must be entered</span></label>
-      <input type="text" id="name" name="name" placeholder="name" required="required" />
+      <label for="title">Title</label>
+      <select id="title" name="title">
+        <option value="">&hellip;</option>
+        <option value="Mr">Mr</option>
+        <option value="Ms">Ms</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Dr">Dr</option>
+        <option value="Prof">Prof</option>
+      </select>
     </div>
 
     <div>
-      <label for="email">your email <span class="help">must be entered</span></label>
-      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" />
+      <label for="firstname">First name <span class="help">must be entered</span></label>
+      <input type="text" id="firstname" name="firstname" placeholder="first name" required="required" />
+    </div>
+
+    <div>
+      <label for="lastname">Last name <span class="help">must be entered</span></label>
+      <input type="text" id="lastname" name="lastname" placeholder="last name" required="required" />
+    </div>
+
+    <div>
+      <label for="gender">Gender <span class="help">must be selected</span></label>
+      <select id="gender" name="gender" required="required">
+        <option value="">&hellip;</option>
+        <option value="male">male</option>
+        <option value="female">female</option>
+        <option value="none">prefer not to say</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="nationality">Nationality <span class="help">must be selected</span></label>
+      <select id="nationality" name="nationality" required="required" data-form-datalist="true">
+        <option value="">&hellip;</option>
+        <option value="UK">United Kingdom</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Spanish">Spanish</option>
+      </select>
     </div>
 
     <div>
@@ -33,18 +65,293 @@
       <input type="date" id="dob" name="dob" required="required" />
     </div>
 
+  </fieldset>
+
+  <fieldset>
+    <legend>Prospectus</legend>
+
     <div>
-      <label><input type="radio" id="browser1" name="browser" value="Chrome" /> I use Google Chrome</label>
-      <label><input type="radio" id="browser2" name="browser" value="Firefox" /> I use Mozilla Firefox</label>
-      <label><input type="radio" id="browser3" name="browser" value="Safari" /> I use Apple Safari</label>
-      <label><input type="radio" id="browser4" name="browser" value="IE" /> I use Microsoft Internet Explorer</label>
-      <label><input type="radio" id="browser5" name="browser" value="Opera" /> I use Opera</label>
+      <label for="prospectus">Prospectus <span class="help">type must be selected</span></label>
+      <select id="prospectus" name="prospectus" required="required">
+        <option value="">&hellip;</option>
+        <option value="undergraduate">2015 Undergraduate Prospectus</option>
+        <option value="postgraduate">2015 Postgraduate &amp; Professional Prospectus</option>
+        <option value="medicine">2015 Medicine &amp; Dentistry Prospectus</option>
+      </select>
+    </div>
+
+    <div>
+      <label><input type="checkbox" name="post" data-form-grouptrigger="address" /> post a printed copy to me</label>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Contact</legend>
+
+    <div>
+      <label for="email">Email address <span class="help">must be entered</span></label>
+      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" data-form-group="address" />
+    </div>
+
+    <div>
+      <label for="address">House name/number and road <span class="help">must be entered</span></label>
+      <input type="text" id="address" name="address" placeholder="first line of address" required="required" data-form-group="address" />
+    </div>
+
+    <div>
+      <label for="city">City <span class="help">must be entered</span></label>
+      <input type="text" id="city" name="city" placeholder="city" required="required" data-form-group="address" />
+    </div>
+
+    <div>
+      <label for="country">Country <span class="help">must be entered</span></label>
+      <input type="text" id="country" name="country" placeholder="country" required="required" data-form-group="address" />
+    </div>
+
+    <div>
+      <label for="postcode">Post code <span class="help">must be entered</span></label>
+      <input type="text" id="postcode" name="postcode" placeholder="post code" required="required" data-form-group="address" />
+    </div>
+
+    <div>
+      <label for="tel">Telephone number <span class="help">with international and regional codes</span></label>
+      <input type="tel" id="tel" name="tel" placeholder="full telephone number" />
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Intended year of entry</legend>
+
+    <div>
+      <label for="year">Year of entry <span class="help">must be entered</span></label>
+      <input type="number" id="year" name="year" value="2014" min="2014" max="2025" step="1" required="required" />
+    </div>
+
+    <div>
+      <label for="level">Level of study <span class="help">must be selected</span></label>
+      <select id="level" name="level" required="required">
+        <option value="">&hellip;</option>
+        <option value="undergraduate">Undergraduate</option>
+        <option value="foundation">Foundation</option>
+        <option value="pgtaught">Postgraduate &ndash; taught</option>
+        <option value="pgresearch">Postgraduate &ndash; research</option>
+      </select>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Interest</legend>
+
+    <div>
+      <label for="interest1">Primary interest area <span class="help">must be selected</span></label>
+      <select id="interest1" name="interest1" required="required" data-form-datalist="true">
+        <option value="">&hellip;</option>
+        <option value="Accounting, Banking and Finance">Accounting, Banking and Finance</option>
+        <option value="Agriculture">Agriculture</option>
+        <option value="Animal Science">Animal Science</option>
+        <option value="Archaeology">Archaeology</option>
+        <option value="Architecture">Architecture</option>
+        <option value="Art">Art</option>
+        <option value="Art History">Art History</option>
+        <option value="Biological Sciences">Biological Sciences</option>
+        <option value="Biomedical Sciences">Biomedical Sciences</option>
+        <option value="Building and Construction">Building and Construction</option>
+        <option value="Business">Business</option>
+        <option value="Business Information Management">Business Information Management</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Children">Children</option>
+        <option value="Civil, Structural and Coastal Engineering">Civil, Structural and Coastal Engineering</option>
+        <option value="Computing and Information Technology">Computing and Information Technology</option>
+        <option value="Continuing Professional Development">Continuing Professional Development</option>
+        <option value="Crafts">Crafts</option>
+        <option value="Criminology and Criminal Justice Studies">Criminology and Criminal Justice Studies</option>
+        <option value="Crop Science">Crop Science</option>
+        <option value="Dance">Dance</option>
+        <option value="Dentistry">Dentistry</option>
+        <option value="Design (3D, Graphic &amp; Illustration)">Design (3D, Graphic &amp; Illustration)</option>
+        <option value="Digital Art and Multimedia">Digital Art and Multimedia</option>
+        <option value="Drama">Drama</option>
+        <option value="Earth Sciences">Earth Sciences</option>
+        <option value="Ecology and Conservation">Ecology and Conservation</option>
+        <option value="Economics">Economics</option>
+        <option value="Educational Studies">Educational Studies</option>
+        <option value="Electronic, Communication and Electrical Engineering">Electronic, Communication and Electrical Engineering</option>
+        <option value="English and Creative Writing">English and Creative Writing</option>
+        <option value="English as a Foreign Language">English as a Foreign Language</option>
+        <option value="Environmental Sciences and Environmental Studies">Environmental Sciences and Environmental Studies</option>
+        <option value="Fashion and Textiles">Fashion and Textiles</option>
+        <option value="Film">Film</option>
+        <option value="Fine Art">Fine Art</option>
+        <option value="Food Science, Nutrition and Dietetics">Food Science, Nutrition and Dietetics</option>
+        <option value="Geography">Geography</option>
+        <option value="Geology">Geology</option>
+        <option value="Health Professions and Therapies">Health Professions and Therapies</option>
+        <option value="History">History</option>
+        <option value="Horticulture">Horticulture</option>
+        <option value="Hospitality and Catering">Hospitality and Catering</option>
+        <option value="Human Resource Management and Personnel">Human Resource Management and Personnel</option>
+        <option value="International Business">International Business</option>
+        <option value="International Relations">International Relations</option>
+        <option value="Journalism">Journalism</option>
+        <option value="Landscape Design">Landscape Design</option>
+        <option value="Law">Law</option>
+        <option value="Leisure, Events &amp; Sports">Leisure, Events &amp; Sports</option>
+        <option value="Management and Leadership">Management and Leadership</option>
+        <option value="Marine Biology">Marine Biology</option>
+        <option value="Marine Studies">Marine Studies</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Mechanical, Marine and Materials Engineering">Mechanical, Marine and Materials Engineering</option>
+        <option value="Media">Media</option>
+        <option value="Medical Technology">Medical Technology</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Mental Health">Mental Health</option>
+        <option value="Midwifery">Midwifery</option>
+        <option value="Modern Languages">Modern Languages</option>
+        <option value="Music">Music</option>
+        <option value="Networks &amp; Security">Networks &amp; Security</option>
+        <option value="Neuroscience">Neuroscience</option>
+        <option value="Nursing">Nursing</option>
+        <option value="Photography">Photography</option>
+        <option value="Politics">Politics</option>
+        <option value="Post Compulsory Education and Training">Post Compulsory Education and Training</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Public Sector Management">Public Sector Management</option>
+        <option value="Public Services">Public Services</option>
+        <option value="Publishing &amp; Journalism">Publishing &amp; Journalism</option>
+        <option value="Robotics">Robotics</option>
+        <option value="Rural, Resource and Conservation Management">Rural, Resource and Conservation Management</option>
+        <option value="Shipping and Logistics">Shipping and Logistics</option>
+        <option value="Social Policy and Administration">Social Policy and Administration</option>
+        <option value="Social Research">Social Research</option>
+        <option value="Social Work and Community Work">Social Work and Community Work</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Sports Management">Sports Management</option>
+        <option value="Sports Science">Sports Science</option>
+        <option value="Statistics">Statistics</option>
+        <option value="Teacher Education">Teacher Education</option>
+        <option value="Teaching Assistants">Teaching Assistants</option>
+        <option value="Theatre">Theatre</option>
+        <option value="Tourism">Tourism</option>
+        <option value="Zoology">Zoology</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="interest2">Secondary interest area</label>
+      <select id="interest2" name="interest2" data-form-datalist="true">
+        <option value="">&hellip;</option>
+        <option value="Accounting, Banking and Finance">Accounting, Banking and Finance</option>
+        <option value="Agriculture">Agriculture</option>
+        <option value="Animal Science">Animal Science</option>
+        <option value="Archaeology">Archaeology</option>
+        <option value="Architecture">Architecture</option>
+        <option value="Art">Art</option>
+        <option value="Art History">Art History</option>
+        <option value="Biological Sciences">Biological Sciences</option>
+        <option value="Biomedical Sciences">Biomedical Sciences</option>
+        <option value="Building and Construction">Building and Construction</option>
+        <option value="Business">Business</option>
+        <option value="Business Information Management">Business Information Management</option>
+        <option value="Chemistry">Chemistry</option>
+        <option value="Children">Children</option>
+        <option value="Civil, Structural and Coastal Engineering">Civil, Structural and Coastal Engineering</option>
+        <option value="Computing and Information Technology">Computing and Information Technology</option>
+        <option value="Continuing Professional Development">Continuing Professional Development</option>
+        <option value="Crafts">Crafts</option>
+        <option value="Criminology and Criminal Justice Studies">Criminology and Criminal Justice Studies</option>
+        <option value="Crop Science">Crop Science</option>
+        <option value="Dance">Dance</option>
+        <option value="Dentistry">Dentistry</option>
+        <option value="Design (3D, Graphic &amp; Illustration)">Design (3D, Graphic &amp; Illustration)</option>
+        <option value="Digital Art and Multimedia">Digital Art and Multimedia</option>
+        <option value="Drama">Drama</option>
+        <option value="Earth Sciences">Earth Sciences</option>
+        <option value="Ecology and Conservation">Ecology and Conservation</option>
+        <option value="Economics">Economics</option>
+        <option value="Educational Studies">Educational Studies</option>
+        <option value="Electronic, Communication and Electrical Engineering">Electronic, Communication and Electrical Engineering</option>
+        <option value="English and Creative Writing">English and Creative Writing</option>
+        <option value="English as a Foreign Language">English as a Foreign Language</option>
+        <option value="Environmental Sciences and Environmental Studies">Environmental Sciences and Environmental Studies</option>
+        <option value="Fashion and Textiles">Fashion and Textiles</option>
+        <option value="Film">Film</option>
+        <option value="Fine Art">Fine Art</option>
+        <option value="Food Science, Nutrition and Dietetics">Food Science, Nutrition and Dietetics</option>
+        <option value="Geography">Geography</option>
+        <option value="Geology">Geology</option>
+        <option value="Health Professions and Therapies">Health Professions and Therapies</option>
+        <option value="History">History</option>
+        <option value="Horticulture">Horticulture</option>
+        <option value="Hospitality and Catering">Hospitality and Catering</option>
+        <option value="Human Resource Management and Personnel">Human Resource Management and Personnel</option>
+        <option value="International Business">International Business</option>
+        <option value="International Relations">International Relations</option>
+        <option value="Journalism">Journalism</option>
+        <option value="Landscape Design">Landscape Design</option>
+        <option value="Law">Law</option>
+        <option value="Leisure, Events &amp; Sports">Leisure, Events &amp; Sports</option>
+        <option value="Management and Leadership">Management and Leadership</option>
+        <option value="Marine Biology">Marine Biology</option>
+        <option value="Marine Studies">Marine Studies</option>
+        <option value="Marketing">Marketing</option>
+        <option value="Mathematics">Mathematics</option>
+        <option value="Mechanical, Marine and Materials Engineering">Mechanical, Marine and Materials Engineering</option>
+        <option value="Media">Media</option>
+        <option value="Medical Technology">Medical Technology</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Mental Health">Mental Health</option>
+        <option value="Midwifery">Midwifery</option>
+        <option value="Modern Languages">Modern Languages</option>
+        <option value="Music">Music</option>
+        <option value="Networks &amp; Security">Networks &amp; Security</option>
+        <option value="Neuroscience">Neuroscience</option>
+        <option value="Nursing">Nursing</option>
+        <option value="Photography">Photography</option>
+        <option value="Politics">Politics</option>
+        <option value="Post Compulsory Education and Training">Post Compulsory Education and Training</option>
+        <option value="Psychology">Psychology</option>
+        <option value="Public Sector Management">Public Sector Management</option>
+        <option value="Public Services">Public Services</option>
+        <option value="Publishing &amp; Journalism">Publishing &amp; Journalism</option>
+        <option value="Robotics">Robotics</option>
+        <option value="Rural, Resource and Conservation Management">Rural, Resource and Conservation Management</option>
+        <option value="Shipping and Logistics">Shipping and Logistics</option>
+        <option value="Social Policy and Administration">Social Policy and Administration</option>
+        <option value="Social Research">Social Research</option>
+        <option value="Social Work and Community Work">Social Work and Community Work</option>
+        <option value="Sociology">Sociology</option>
+        <option value="Sports Management">Sports Management</option>
+        <option value="Sports Science">Sports Science</option>
+        <option value="Statistics">Statistics</option>
+        <option value="Teacher Education">Teacher Education</option>
+        <option value="Teaching Assistants">Teaching Assistants</option>
+        <option value="Theatre">Theatre</option>
+        <option value="Tourism">Tourism</option>
+        <option value="Zoology">Zoology</option>
+      </select>
+    </div>
+
+  </fieldset>
+
+  <fieldset>
+    <legend>Other data types</legend>
+
+    <div>
+      <label><input type="radio" name="browser" value="Chrome" /> I use Google Chrome</label>
+      <label><input type="radio" name="browser" value="Firefox" /> I use Mozilla Firefox</label>
+      <label><input type="radio" name="browser" value="Safari" /> I use Apple Safari</label>
+      <label><input type="radio" name="browser" value="IE" /> I use Microsoft Internet Explorer</label>
+      <label><input type="radio" name="browser" value="Opera" /> I use Opera</label>
     </div>
 
     <div>
       <label for="age">your age group</label>
       <select id="age" name="age">
-        <option value="">please select</option>
+        <option value="">&hellip;</option>
         <optgroup label="child">
           <option value="9">0 - 9</option>
           <option value="15">10 - 15</option>
@@ -65,7 +372,9 @@
     </div>
 
     <div>
-      <label><input type="checkbox" id="spam" name="spam" /> I want to be spammed</label>
+      <label><input type="checkbox" name="checkbox1" /> Check me one</label>
+      <label><input type="checkbox" name="checkbox2" /> Check me too</label>
+      <label>Checkbox with text at the start <input type="checkbox" name="checkbox2" /></label>
     </div>
 
   </fieldset>
@@ -75,8 +384,6 @@
   </div>
 
 </form>
-
-<p>Still requires various form elements and datalists</p>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/base.js"></script>

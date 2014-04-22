@@ -8,7 +8,8 @@
 
   // initialise
   function Validator(form) {
-    console.log("form validator: ", form);
+    // console causes IE to fail?
+    // console.log("form validator: ", form);
   }
 
   // register forms

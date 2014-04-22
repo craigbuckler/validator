@@ -21,8 +21,8 @@ var
 
 // constants
 var
-  src = './src/',
-  dst = './',
+  src = 'src/',
+  dst = '',
   images = {
     'in':  src + 'images/**/*',
     'out': dst + 'images/'

@@ -1,6 +1,6 @@
 /* basic form styles */
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 body {
@@ -15,8 +15,4 @@ h1 {
   font-size: 1.6em;
   font-weight: normal;
   margin: 0 0 0.5em 0;
-}
-
-label.error {
-  display: none;
 }

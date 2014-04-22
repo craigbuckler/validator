@@ -1,20 +1,26 @@
+$icolor: $granite;                // input text colour
+$pcolor: lighten($granite, 50%);  // input placeholder colour
+$ierror: #c00;                    // input error colour
+
 fieldset {
-  padding: 1em 1.5em;
-  margin-bottom: 1em;
-  background: lighten($errol-grey, 85%);
-  border: solid 1px $grey;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
 }
 
 legend {
-  font-size: 1em;
+  clear: both;
+  font-size: 1.25em;
   font-weight: bold;
-  padding: 0 2px;
+  padding: 0;
+  margin: 1em 0;
   color: $errol-grey;
 }
 
 label {
   display: block;
-  font-weight: bold;
+  font-weight: normal;
+  text-transform: none;
   margin-right: 0.75em;
   margin-bottom: 0.25em;
   color: lighten($errol-grey, 20%);
@@ -22,76 +28,109 @@ label {
   .help {
     display: none;
   }
+
+  &:last-child {
+      margin-bottom: 1em;
+  }
 }
 
 input,
 textarea,
-select,
-button {
+select {
   display: block;
-  font-size: 1em;
-  margin-bottom: 1em;
-}
-
-input,
-textarea,
-button {
   width: 100%;
   font-family: inherit;
-  border: none;
+  font-size: 1em;
+  margin-bottom: 1em;
   padding: 0.75em 2em;
-  color: $granite;
+  color: $icolor;
   background-color: $grey-f9;
   border: 1px solid $grey-e0;
-  transition: background-color 0.5s ease;
+  border-radius: 0;
+  outline: 0;
+
+  &:valid, &:invalid {
+    outline: 0;
+    box-shadow: none;
+  }
 }
 
 input {
-  &::-webkit-input-placeholder { color: lighten($granite, 25%); }
-  &::-moz-placeholder { color: lighten($granite, 25%); }
-  &:-ms-input-placeholder { color: lighten($granite, 25%); }
-  &::placeholder { color: lighten($granite, 25%); }
+  &::-webkit-input-placeholder { color: $pcolor; }
+  &::-moz-placeholder { color: $pcolor; }
+  &:-ms-input-placeholder { color: $pcolor; }
+  &::placeholder { color: $pcolor; }
 }
 
-input[type='checkbox'],
+input[type="checkbox"],
 input[type="radio"] {
   clear: left;
   display: inline-block;
   width: auto;
-  margin-right: 0.5em;
-  margin-bottom: 0.25em;
-}
-
-label:last-child {
-  input[type='checkbox'],
-  input[type="radio"] {
-    margin-bottom: 1em;
-  }
+  vertical-align: bottom;
+  padding: 0;
+  margin: 0 0.25em 0.25em 0.25em;
+  background-color: transparent;
+  border: 0 none;
 }
 
 textarea {
   min-height: 6em;
 }
 
-button {
-  width: 10em;
+select:valid, select:invalid {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8BAMAAADml+XTAAAAGFBMVEWox+Xs8/lblM6Mtd3J2+9toNP///9Tj8z+Q0+kAAAAS0lEQVQ4y2MoxwIYRgVHBdEFS9KAIAVNsBQkmIqu3Q0o6I4uGAYUDEcXLEhLS8CwvUgsTQjTSWxp7JiCiolYHF+cjM1H7KOxOcIFAdSpKTPVZfIoAAAAAElFTkSuQmCC) no-repeat 100% 50%;
 }
 
-input[type='button'],
-button[type='submit'] {
-  color: $white;
-  background-color: $peter-blue;
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+option {
+  padding: 0 2em;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+  width: 10em;
+  padding: 0.75em 0;
+  border: 0 none;
   cursor: pointer;
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+
+input[type="button"],
+button[type="submit"] {
+  color: $white;
+  background-color: $bondi-blue;
 
   &:hover {
     background-color: darken($errol-orange, 10%);
   }
 }
 
-input[type='reset'] {
+input[type="reset"] {
   background-color: $errol-danger;
 
   &:hover {
     background-color: darken($errol-danger, 10%);
   }
+}
+
+.required label:after {
+  content: "*";
+  margin-left: 0.25em;
+  color: $ierror;
 }
