@@ -84,7 +84,7 @@ select:valid, select:invalid {
   appearance: none;
   text-indent: 1px;
   text-overflow: "";
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8BAMAAADml+XTAAAAGFBMVEWox+Xs8/lblM6Mtd3J2+9toNP///9Tj8z+Q0+kAAAAS0lEQVQ4y2MoxwIYRgVHBdEFS9KAIAVNsBQkmIqu3Q0o6I4uGAYUDEcXLEhLS8CwvUgsTQjTSWxp7JiCiolYHF+cjM1H7KOxOcIFAdSpKTPVZfIoAAAAAElFTkSuQmCC) no-repeat 100% 50%;
+  background: $grey-f9 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8BAMAAADml+XTAAAAGFBMVEWox+Xs8/lblM6Mtd3J2+9toNP///9Tj8z+Q0+kAAAAS0lEQVQ4y2MoxwIYRgVHBdEFS9KAIAVNsBQkmIqu3Q0o6I4uGAYUDEcXLEhLS8CwvUgsTQjTSWxp7JiCiolYHF+cjM1H7KOxOcIFAdSpKTPVZfIoAAAAAElFTkSuQmCC) no-repeat 100% 50%;
 }
 
 select:-moz-focusring {
@@ -98,6 +98,7 @@ select::-ms-expand {
 
 option {
   padding: 0 2em;
+  background-color: $white;
 }
 
 button {
