@@ -57,7 +57,15 @@ gulp.task('browsersync', function() {
   browsersync.init(update, {
     server: {
       baseDir: "./"
-    }
+    },
+    ghostMode: {
+      clicks: false,
+      location: false,
+      forms: false,
+      scroll: false
+    },
+    open: false,
+    notify: true
   });
 });
 

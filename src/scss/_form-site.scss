@@ -1,5 +1,6 @@
 $icolor: $granite;                // input text colour
 $pcolor: lighten($granite, 50%);  // input placeholder colour
+$tcolor: $bondi-blue;             // theme colour (active box and buttons)
 $ierror: #c00;                    // input error colour
 
 fieldset {
@@ -21,6 +22,7 @@ label {
   display: block;
   font-weight: normal;
   text-transform: none;
+  vertical-align: baseline;
   margin-right: 0.75em;
   margin-bottom: 0.25em;
   color: lighten($errol-grey, 20%);
@@ -30,7 +32,7 @@ label {
   }
 
   &:last-child {
-      margin-bottom: 1em;
+    margin-bottom: 1em;
   }
 }
 
@@ -47,11 +49,16 @@ select {
   background-color: $grey-f9;
   border: 1px solid $grey-e0;
   border-radius: 0;
+  box-shadow: none;
   outline: 0;
 
   &:valid, &:invalid {
     outline: 0;
     box-shadow: none;
+  }
+
+  &:focus {
+    border-color: $tcolor;
   }
 }
 
@@ -67,9 +74,9 @@ input[type="radio"] {
   clear: left;
   display: inline-block;
   width: auto;
-  vertical-align: bottom;
+  vertical-align: baseline;
   padding: 0;
-  margin: 0 0.25em 0.25em 0.25em;
+  margin: 0.25em;
   background-color: transparent;
   border: 0 none;
 }
@@ -78,10 +85,15 @@ textarea {
   min-height: 6em;
 }
 
-select:valid, select:invalid {
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+textarea, select:valid, select:invalid {
   -webkit-appearance: none;
   -moz-appearance: none;
+  -ms-appearance: none;
   appearance: none;
+}
+
+select:valid, select:invalid {
   text-indent: 1px;
   text-overflow: "";
   background: $grey-f9 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAA8BAMAAADml+XTAAAAGFBMVEWox+Xs8/lblM6Mtd3J2+9toNP///9Tj8z+Q0+kAAAAS0lEQVQ4y2MoxwIYRgVHBdEFS9KAIAVNsBQkmIqu3Q0o6I4uGAYUDEcXLEhLS8CwvUgsTQjTSWxp7JiCiolYHF+cjM1H7KOxOcIFAdSpKTPVZfIoAAAAAElFTkSuQmCC) no-repeat 100% 50%;
@@ -98,7 +110,6 @@ select::-ms-expand {
 
 option {
   padding: 0 2em;
-  background-color: $white;
 }
 
 button {
@@ -115,18 +126,18 @@ button {
 input[type="button"],
 button[type="submit"] {
   color: $white;
-  background-color: $bondi-blue;
+  background-color: $tcolor;
 
   &:hover {
-    background-color: darken($errol-orange, 10%);
+    background-color: darken($tcolor, 25%);
   }
 }
 
 input[type="reset"] {
-  background-color: $errol-danger;
+  background-color: $ierror;
 
   &:hover {
-    background-color: darken($errol-danger, 10%);
+    background-color: darken($ierror, 10%);
   }
 }
 
@@ -134,4 +145,13 @@ input[type="reset"] {
   content: "*";
   margin-left: 0.25em;
   color: $ierror;
+}
+
+.error {
+  color: $ierror;
+  label { color: $ierror; }
+  span { display: inline; }
+  input, textarea, select {
+    border-color: $ierror;
+  }
 }

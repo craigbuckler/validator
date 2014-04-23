@@ -31,12 +31,12 @@
 
     <div>
       <label for="firstname">First name <span class="help">must be entered</span></label>
-      <input type="text" id="firstname" name="firstname" placeholder="first name" required="required" />
+      <input type="text" id="firstname" name="firstname" placeholder="first name" required="required" maxlength="20" />
     </div>
 
     <div>
       <label for="lastname">Last name <span class="help">must be entered</span></label>
-      <input type="text" id="lastname" name="lastname" placeholder="last name" required="required" />
+      <input type="text" id="lastname" name="lastname" placeholder="last name" required="required" maxlength="20" />
     </div>
 
     <div>
@@ -61,7 +61,7 @@
     </div>
 
     <div>
-      <label for="dob">date of birth <span class="help">must be entered in the format DD-MM-YYYY</span></label>
+      <label for="dob">Date of birth <span class="help">must be entered in the format DD-MM-YYYY</span></label>
       <input type="date" id="dob" name="dob" required="required" />
     </div>
 
@@ -91,32 +91,32 @@
 
     <div>
       <label for="email">Email address <span class="help">must be entered</span></label>
-      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" data-form-group="address" />
+      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
       <label for="address">House name/number and road <span class="help">must be entered</span></label>
-      <input type="text" id="address" name="address" placeholder="first line of address" required="required" data-form-group="address" />
+      <input type="text" id="address" name="address" placeholder="first line of address" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
       <label for="city">City <span class="help">must be entered</span></label>
-      <input type="text" id="city" name="city" placeholder="city" required="required" data-form-group="address" />
+      <input type="text" id="city" name="city" placeholder="city" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
       <label for="country">Country <span class="help">must be entered</span></label>
-      <input type="text" id="country" name="country" placeholder="country" required="required" data-form-group="address" />
+      <input type="text" id="country" name="country" placeholder="country" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
       <label for="postcode">Post code <span class="help">must be entered</span></label>
-      <input type="text" id="postcode" name="postcode" placeholder="post code" required="required" data-form-group="address" />
+      <input type="text" id="postcode" name="postcode" placeholder="post code" required="required" maxlength="10" data-form-group="address" />
     </div>
 
     <div>
       <label for="tel">Telephone number <span class="help">with international and regional codes</span></label>
-      <input type="tel" id="tel" name="tel" placeholder="full telephone number" />
+      <input type="tel" id="tel" name="tel" placeholder="full telephone number" maxlength="20" />
     </div>
 
   </fieldset>
@@ -126,7 +126,7 @@
 
     <div>
       <label for="year">Year of entry <span class="help">must be entered</span></label>
-      <input type="number" id="year" name="year" value="2014" min="2014" max="2025" step="1" required="required" />
+      <input type="number" id="year" name="year" value="2014" min="2014" max="2025" step="1" required="required"  maxlength="4" />
     </div>
 
     <div>
@@ -368,11 +368,11 @@
 
     <div>
       <label for="comments">comments</label>
-      <textarea id="comments" name="comments" rows="5" cols="20"></textarea>
+      <textarea id="comments" name="comments" rows="5" cols="20" maxlength="200"></textarea>
     </div>
 
     <div>
-      <label><input type="checkbox" name="checkbox1" /> Check me one</label>
+      <label><input type="checkbox" name="checkbox1" required="required" /> You must check me!</label>
       <label><input type="checkbox" name="checkbox2" /> Check me too</label>
       <label>Checkbox with text at the start <input type="checkbox" name="checkbox2" /></label>
     </div>
@@ -384,6 +384,9 @@
   </div>
 
 </form>
+
+<!-- output console log -->
+<div style="margin: 1em 0;"><textarea id="log" rows="20" cols="40" style="font-family:monospace;font-weight:normal;padding:2px 4px;color:#0f0;background-color:#000;"></textarea></div>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/base.js"></script>
