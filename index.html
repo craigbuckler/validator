@@ -12,6 +12,9 @@
 
 <h1>Generic form validator</h1>
 
+<p>http://www.html5rocks.com/en/tutorials/forms/constraintvalidation/</p>
+<p>http://html5doctor.com/html5-forms-input-types/</p>
+
 <form action="/" method="post" data-module="validate">
 
   <fieldset>
@@ -30,17 +33,17 @@
     </div>
 
     <div>
-      <label for="firstname">First name <span class="help">must be entered</span></label>
+      <label for="firstname">First name<span class="help"> must be entered</span></label>
       <input type="text" id="firstname" name="firstname" placeholder="first name" required="required" maxlength="20" />
     </div>
 
     <div>
-      <label for="lastname">Last name <span class="help">must be entered</span></label>
+      <label for="lastname">Last name<span class="help"> must be entered</span></label>
       <input type="text" id="lastname" name="lastname" placeholder="last name" required="required" maxlength="20" />
     </div>
 
     <div>
-      <label for="gender">Gender <span class="help">must be selected</span></label>
+      <label for="gender">Gender<span class="help"> must be selected</span></label>
       <select id="gender" name="gender" required="required">
         <option value="">&hellip;</option>
         <option value="male">male</option>
@@ -50,7 +53,7 @@
     </div>
 
     <div>
-      <label for="nationality">Nationality <span class="help">must be selected</span></label>
+      <label for="nationality">Nationality<span class="help"> must be selected</span></label>
       <select id="nationality" name="nationality" required="required" data-form-datalist="true">
         <option value="">&hellip;</option>
         <option value="UK">United Kingdom</option>
@@ -61,8 +64,8 @@
     </div>
 
     <div>
-      <label for="dob">Date of birth <span class="help">must be entered in the format DD-MM-YYYY</span></label>
-      <input type="date" id="dob" name="dob" required="required" />
+      <label for="dob">Date of birth<span class="help"> must be entered in the format DD-MM-YYYY</span></label>
+      <input type="date" id="dob" name="dob" min="1940-12-31" max="2014-01-01" required="required" />
     </div>
 
   </fieldset>
@@ -71,7 +74,7 @@
     <legend>Prospectus</legend>
 
     <div>
-      <label for="prospectus">Prospectus <span class="help">type must be selected</span></label>
+      <label for="prospectus">Prospectus<span class="help"> type must be selected</span></label>
       <select id="prospectus" name="prospectus" required="required">
         <option value="">&hellip;</option>
         <option value="undergraduate">2015 Undergraduate Prospectus</option>
@@ -90,32 +93,32 @@
     <legend>Contact</legend>
 
     <div>
-      <label for="email">Email address <span class="help">must be entered</span></label>
-      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" maxlength="50" data-form-group="address" />
+      <label for="email">Email address<span class="help"> must be entered</span></label>
+      <input type="email" id="email" name="email" placeholder="your@email.address" required="required" maxlength="50" />
     </div>
 
     <div>
-      <label for="address">House name/number and road <span class="help">must be entered</span></label>
+      <label for="address">House name/number and road<span class="help"> must be entered</span></label>
       <input type="text" id="address" name="address" placeholder="first line of address" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
-      <label for="city">City <span class="help">must be entered</span></label>
+      <label for="city">City<span class="help"> must be entered</span></label>
       <input type="text" id="city" name="city" placeholder="city" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
-      <label for="country">Country <span class="help">must be entered</span></label>
+      <label for="country">Country<span class="help"> must be entered</span></label>
       <input type="text" id="country" name="country" placeholder="country" required="required" maxlength="50" data-form-group="address" />
     </div>
 
     <div>
-      <label for="postcode">Post code <span class="help">must be entered</span></label>
+      <label for="postcode">Post code<span class="help"> must be entered</span></label>
       <input type="text" id="postcode" name="postcode" placeholder="post code" required="required" maxlength="10" data-form-group="address" />
     </div>
 
     <div>
-      <label for="tel">Telephone number <span class="help">with international and regional codes</span></label>
+      <label for="tel">Telephone number<span class="help"> with international and regional codes</span></label>
       <input type="tel" id="tel" name="tel" placeholder="full telephone number" maxlength="20" />
     </div>
 
@@ -125,12 +128,12 @@
     <legend>Intended year of entry</legend>
 
     <div>
-      <label for="year">Year of entry <span class="help">must be entered</span></label>
+      <label for="year">Year of entry<span class="help"> must be entered</span></label>
       <input type="number" id="year" name="year" value="2014" min="2014" max="2025" step="1" required="required"  maxlength="4" />
     </div>
 
     <div>
-      <label for="level">Level of study <span class="help">must be selected</span></label>
+      <label for="level">Level of study<span class="help"> must be selected</span></label>
       <select id="level" name="level" required="required">
         <option value="">&hellip;</option>
         <option value="undergraduate">Undergraduate</option>
@@ -146,7 +149,7 @@
     <legend>Interest</legend>
 
     <div>
-      <label for="interest1">Primary interest area <span class="help">must be selected</span></label>
+      <label for="interest1">Primary interest area<span class="help"> must be selected</span></label>
       <select id="interest1" name="interest1" required="required" data-form-datalist="true">
         <option value="">&hellip;</option>
         <option value="Accounting, Banking and Finance">Accounting, Banking and Finance</option>
@@ -389,6 +392,7 @@
 <div style="margin: 1em 0;"><textarea id="log" rows="20" cols="40" style="font-family:monospace;font-weight:normal;padding:2px 4px;color:#0f0;background-color:#000;"></textarea></div>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/jqueryui.min.js"></script>
 <script src="js/base.js"></script>
 <script src="js/validator.js"></script>
 

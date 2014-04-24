@@ -1,4 +1,5 @@
 $icolor: $granite;                // input text colour
+$lcolor: lighten($granite, 25%);  // label text colour
 $pcolor: lighten($granite, 50%);  // input placeholder colour
 $tcolor: $bondi-blue;             // theme colour (active box and buttons)
 $ierror: #c00;                    // input error colour
@@ -15,7 +16,7 @@ legend {
   font-weight: bold;
   padding: 0;
   margin: 1em 0;
-  color: $errol-grey;
+  color: $lcolor;
 }
 
 label {
@@ -25,7 +26,10 @@ label {
   vertical-align: baseline;
   margin-right: 0.75em;
   margin-bottom: 0.25em;
-  color: lighten($errol-grey, 20%);
+  color: $lcolor;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 
   .help {
     display: none;
@@ -119,8 +123,6 @@ button {
   padding: 0.75em 0;
   border: 0 none;
   cursor: pointer;
-  -webkit-transition: background-color 0.5s ease;
-  transition: background-color 0.5s ease;
 }
 
 input[type="button"],
@@ -141,10 +143,19 @@ input[type="reset"] {
   }
 }
 
-.required label:after {
+label, input, textarea, select, button {
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+.required label:after, label.required:after {
   content: "*";
   margin-left: 0.25em;
   color: $ierror;
+}
+
+.disabled {
+  display: none;
 }
 
 .error {
@@ -154,4 +165,76 @@ input[type="reset"] {
   input, textarea, select {
     border-color: $ierror;
   }
+}
+
+/* jQueryUI datepicker */
+.ui-datepicker {
+
+  padding: 0;
+  color: $lcolor;
+  background-color: $white;
+  border: 1px solid $grey-e0;
+
+  a.ui-datepicker-prev {
+    width: 3em;
+    float: left;
+  }
+
+  a.ui-datepicker-next {
+    width: 3em;
+    float: right;
+    text-align: right;
+  }
+
+  select {
+    float: left;
+    width: 4em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    background-color: $white;
+    border: 0 none;
+
+    &:valid, &:invalid {
+      background-image: none;
+    }
+
+    option {
+      padding: 0;
+    }
+  }
+
+  table {
+    width: 14em;
+    font-size: 1em;
+    margin: 6px 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    th {
+      width: 2em;
+      font-weight: bold;
+      text-align: right;
+      padding: 1px 2px;
+      color: $lcolor;
+    }
+
+    td {
+
+      text-align: right;
+      padding: 1px 2px;
+
+      a {
+        display: block;
+        text-decoration: none;
+        color: $lcolor;
+
+        &.ui-state-active, &:hover {
+          color: $white;
+          background-color: $lcolor;
+        }
+      }
+    }
+  }
+
 }
