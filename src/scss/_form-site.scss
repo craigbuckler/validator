@@ -122,6 +122,7 @@ button {
   width: 10em;
   padding: 0.75em 0;
   border: 0 none;
+  outline: none;
   cursor: pointer;
 }
 
@@ -223,6 +224,7 @@ label, input, textarea, select, button {
 
       text-align: right;
       padding: 1px 2px;
+      color: $grey-e0;
 
       a {
         display: block;

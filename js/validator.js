@@ -39,12 +39,9 @@
     this.InitialiseFields();
 
     // check all fields
-    var e;
+    var e, T = this;
     for (e = 0; e < this.field.length; e++) this.CheckField(this.field[e]);
     for (e = 0; e < this.trigger.length; e++) this.GroupField(this.trigger[e]);
-
-    // field-level event handlers
-    var T = this;
 
     // group trigger events
     $(this.trigger).on("click change", function(e) { T.GroupField(this); });
@@ -242,13 +239,12 @@
 
     }
 
-    // >>>>>>>>> TODO: REMOVE BEFORE LAUNCH!
+    //  TODO: >>>>>>>>> REMOVE BEFORE LAUNCH!
     if (submit) {
-      alert("FORM WILL SUBMIT!");
+      Log("FORM WILL SUBMIT!");
       e.preventDefault();
       submit = false;
     }
-    LogForm(this.form);
     // <<<<<<<<< END OF REMOVE CODE
 
     return submit;
@@ -310,7 +306,7 @@
     function Format(date, order) {
 
       order = order || [0,1,2]; // default D/M/Y
-      ret = false;
+      var ret = false;
 
       if (date.getFullYear) {
 
@@ -338,8 +334,9 @@
 
   // >>>>>>>>> output logging - remove these functions prior to deployment
   function LogForm(form) {
-    for(var i = 0; i < form.elements.length; i++) {
-      var e=form.elements[i];
+    var i, e;
+    for(i = 0; i < form.elements.length; i++) {
+      e=form.elements[i];
       Log(
         e.nodeName+":"+e.name+
         ", value:"+e.value
