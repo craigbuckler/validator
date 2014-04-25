@@ -141,13 +141,9 @@
     // browser validity available?
     if (e.willValidate !== undefined) {
 
-      // unsupported input
-      var type = e.getAttribute("type");
-      if (e.nodeName === "INPUT" && e.type !== type) {
-        //e.setCustomValidity("wrong"); // will set field error
-
-        // TODO: check all types
-
+      // unsupported input type - fallback validation
+      if (e.nodeName === "INPUT" && e.type !== e.getAttribute("type")) {
+        e.setCustomValidity(!e.disabled && this.FieldValid(e) ? "" : "error");
       }
 
       // standard valid/invalid event trigger
@@ -160,16 +156,90 @@
       e.validity = e.validity || {};
       e.validity.valid = true;
 
-      if (e.getAttribute("disabled") !== null) {
-
-        // TODO: check all types
-
+      if (!e.disabled) {
+        e.validity.valid = this.FieldValid(e);
       }
 
       // custom valid/invalid event trigger
       $e.trigger({ type: (e.validity.valid ? "valid" : "invalid") });
 
     }
+  };
+
+
+  // format field and return true if valid
+  FormValidator.prototype.FieldValid = function(e) {
+
+    var
+      valid = true,
+      val = e.value,
+      type = e.getAttribute("type"),
+      required = e.getAttribute("required"),
+      maxlength = e.getAttribute("maxlength"),
+      min = e.getAttribute("min"),
+      max = e.getAttribute("max"),
+      step = e.getAttribute("step"),
+      pattern = e.getAttribute("pattern");
+
+    switch(type) {
+
+      case "date":
+        var d = Convert.Date.Parse(val);
+        valid = d &&
+          (!min || d >= Convert.Date.Parse(min, [2,1,0])) &&
+          (!max || d <= Convert.Date.Parse(max, [2,1,0]));
+        if (valid) val = Convert.Date.Format(d);
+        break;
+
+      case "email":
+        val = Convert.Email.Parse(val);
+        valid = !!val;
+        break;
+
+      case "number":
+      case "range":
+        var n = Convert.Number.Parse(val);
+        valid = n !== false &&
+          (!min || n >= min) &&
+          (!max || n <= max);
+        if (valid && step) {
+          var s = (n - (min ? min : 0)) / step;
+          valid = (s === Math.floor(s));
+        }
+        if (valid) val = n;
+        break;
+
+      default:
+        // test string length
+        valid = valid &&
+          (!min || val.length >= min) &&
+          (!max || val.length <= max);
+        break;
+
+    }
+
+    // value required?
+    valid = valid && (!required ||
+        ((type === "checkbox" || type === "radio") && e.checked) ||
+        (type !== "checkbox" && type !== "radio" && val !== "")
+      );
+
+    // test pattern
+    if (valid && pattern) {
+      pattern = new RegExp(pattern);
+      valid = pattern.test(val);
+    }
+
+    // maxlength set
+    if (valid && maxlength && type !== "checkbox" && type !== "radio") {
+      valid = val.length <= maxlength;
+    }
+
+    // update field value
+    if (valid && val !== e.value) e.value = val;
+
+    return valid;
+
   };
 
 
@@ -216,22 +286,12 @@
     var firstInvalid = null, submit = true, f;
     for (f = 0; f < this.field.length; f++) {
       this.CheckField(this.field[f]);
-      submit &= this.field[f].validity.valid;
+      submit &= (this.field[f].validity.valid || this.field[f].disabled);
       if (firstInvalid === null && !submit) firstInvalid = f;
     }
 
-    // validation passed?
-    if (submit) {
-
-      // convert this.dates text boxes to YYYY-MM-DD format - SET novalidate!
-      var di;
-      for (f = 0; f < this.date.length; f++) {
-        di = this.date[f];
-        di.value = Convert.Date.Format( Convert.Date.Parse(di.value), [2,1,0] );
-      }
-
-    }
-    else {
+    // validation failed?
+    if (!submit) {
 
       // stop submit and scroll to first invalid
       e.preventDefault();
@@ -244,6 +304,9 @@
       Log("FORM WILL SUBMIT!");
       e.preventDefault();
       submit = false;
+    }
+    else {
+      Log("Submit submit failed. First error at: " + this.field[firstInvalid].name);
     }
     // <<<<<<<<< END OF REMOVE CODE
 
@@ -269,15 +332,33 @@
   // conversion and formatting functions
   var Convert = {};
 
-  // date conversion
+  // number conversion
+  Convert.Number = (function() {
+
+    // parse string to number
+    function Parse(num) {
+      num = parseFloat(num);
+      if (isNaN(num)) num = false;
+      return num;
+    }
+
+    return {
+      Parse: Parse
+    };
+
+  }());
+
+  // date validation
   Convert.Date = (function() {
 
-    var sep = "-"; // default date separator
+    var
+      sep = "-",      // default date separator
+      dmy = [0,1,2];  // default date number order
 
     // parse date
     function Parse(date, order) {
 
-      order = order || [0,1,2]; // default D/M/Y
+      order = order || dmy;
 
       var ret = false;
       date = date.replace(/^\D+|\D+$/g, "");
@@ -301,11 +382,10 @@
       return ret;
     }
 
-
     // format date to a string
     function Format(date, order) {
 
-      order = order || [0,1,2]; // default D/M/Y
+      order = order || dmy;
       var ret = false;
 
       if (date.getFullYear) {
@@ -323,10 +403,28 @@
 
     }
 
-
     return {
       Parse: Parse,
       Format: Format
+    };
+
+  }());
+
+
+  // email validation
+  Convert.Email = (function() {
+
+    var reEmail = /^[^@]+@[a-z0-9]+([_\.\-]{0,1}[a-z0-9]+)*([\.]{1}[a-z0-9]+)+$/;
+
+    // parse email address
+    function Parse(email) {
+      email = email.toLowerCase();
+      if (!reEmail.test(email)) email = false;
+      return email;
+    }
+
+    return {
+      Parse: Parse
     };
 
   }());

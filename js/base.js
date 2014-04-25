@@ -1,8 +1,29 @@
+// feature detection (basic)
+(function($) {
+
+  "use strict";
+
+  var $html = $("html");
+
+  // JavaScript enabled
+  $html.addClass("jsenabled");
+
+  // prevent IE10 mobile zooming
+  if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement("style");
+    msViewportStyle.appendChild(document.createTextNode("@-ms-viewport{width:auto!important}"));
+    document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+  }
+
+})(jQuery);
+
+
+// module loader
 (function (Plymouth) {
 
-	"use strict";
+  "use strict";
 
-	var plymouth_modules = {};
+  var plymouth_modules = {};
 
   Plymouth.Modules = {
     register: function Register(id, handler) {

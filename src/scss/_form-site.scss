@@ -31,13 +31,13 @@ label {
   -moz-user-select: none;
   user-select: none;
 
-  .help {
-    display: none;
-  }
-
   &:last-child {
     margin-bottom: 1em;
   }
+}
+
+.jsenabled .help {
+  display: none;
 }
 
 input,
@@ -112,8 +112,14 @@ select::-ms-expand {
   display: none;
 }
 
+optgroup {
+  font-weight: bold;
+  font-style: normal;
+  padding: 0 1em;
+}
+
 option {
-  padding: 0 2em;
+  padding: 0 1em;
 }
 
 button {
@@ -159,10 +165,10 @@ label, input, textarea, select, button {
   display: none;
 }
 
-.error {
+.jsenabled .error {
   color: $ierror;
   label { color: $ierror; }
-  span { display: inline; }
+  .help { display: inline; }
   input, textarea, select {
     border-color: $ierror;
   }
@@ -179,12 +185,18 @@ label, input, textarea, select, button {
   a.ui-datepicker-prev {
     width: 3em;
     float: left;
+    text-indent: -999px;
+    overflow: hidden;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJAgMAAACHww4NAAAADFBMVEWIiIj///+IiIiIiIgyZ1NhAAAAA3RSTlMAAIAXzkf+AAAAH0lEQVQIHWMIaGBwOsDAfYBB/wDDfjAJZDMdYHBoAABwvQhIRyjUBwAAAABJRU5ErkJggg==) 10% 50% no-repeat;
   }
 
   a.ui-datepicker-next {
     width: 3em;
     float: right;
     text-align: right;
+    text-indent: 999px;
+    overflow: hidden;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAJAgMAAACHww4NAAAADFBMVEWIiIj///+IiIiIiIgyZ1NhAAAAA3RSTlMAAIAXzkf+AAAAIElEQVQIHWNsOMD4QIHxBwfjPybG/40gEsh+kMDYuB8Ai04KSr7ws7gAAAAASUVORK5CYII=) 90% 50% no-repeat;
   }
 
   select {
@@ -197,7 +209,7 @@ label, input, textarea, select, button {
     border: 0 none;
 
     &:valid, &:invalid {
-      background-image: none;
+      background: $white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFAgMAAADqPS74AAAADFBMVEWIiIj///+IiIiIiIgyZ1NhAAAAA3RSTlMAAIAXzkf+AAAAG0lEQVQIHWPa/7+BqQCI7/xiYDJ/wcDEt8ABAF/8CBshWRPYAAAAAElFTkSuQmCC) no-repeat 95% 50%;
     }
 
     option {
@@ -206,6 +218,7 @@ label, input, textarea, select, button {
   }
 
   table {
+    clear: both;
     width: 14em;
     font-size: 1em;
     margin: 6px 0;
