@@ -8,13 +8,14 @@
 
   // default configuration
   var config = {
-    dateFormat:       "dd-mm-yy",               // default date format
-    requiredClass:    "required",               // class applied to required fields
-    disableClass:     "disabled",               // class applied to disabled fields
-    errorClass:       "error",                  // class applied to fields with errors
-    groupAttr:        "data-form-group",        // attribute identifying groups field belongs to
-    groupTriggerAttr: "data-form-grouptrigger", // attribute identifying enable/disable group trigger
-    scrollToElement:  500                       // milliseconds to scroll to element
+    dateFormat:           "dd-mm-yy",                   // default date format
+    requiredClass:        "required",                   // class applied to required fields
+    disableClass:         "disabled",                   // class applied to disabled fields
+    errorClass:           "error",                      // class applied to fields with errors
+    groupAttr:            "data-formgroup",             // attribute identifying groups field belongs to
+    groupTriggerAttr:     "data-formgrouptrigger",      // attribute identifying enable/disable group trigger
+    groupTriggerValAttr:  "data-formgrouptriggervalue", // attribute identifying enable/disable group trigger valid value
+    scrollToElement:      500                           // milliseconds to scroll to element
   };
 
 
@@ -246,32 +247,49 @@
   // trigger group enable/disable
   FormValidator.prototype.GroupField = function(e) {
 
-    var trigger = e.getAttribute(config.groupTriggerAttr);
+    var
+      trigger = e.getAttribute(config.groupTriggerAttr),
+      trigval = e.getAttribute(config.groupTriggerValAttr);
+
     if (trigger) {
       trigger = trigger.replace(/\s+/,"").split(",");
-      var g, tg, enabled, f, $f;
+      trigval = (trigval ? trigval.replace(/\s+/,"").split(",") : []);
+
+      var g, tg, enabled, f, $f, ctrigval, v;
       for (g = 0; g < trigger.length; g++) {
+
         tg = trigger[g];
+        if (this.group[tg]) {
 
-        // is trigger enabled?
-        enabled =
-          ((e.type === "checkbox" || e.type === "radio") && e.checked) ||
-          (e.type !== "checkbox" && e.type !== "radio" && !!e.value) ||
-          (e.nodeName === "SELECT" && !!e.options[e.selectedIndex].value);
+          // is there a trigger value?
+          if (trigval[g]) {
+            ctrigval = trigval[g];
+          }
+          else {
+            v = (e.nodeName === "SELECT" ? e.options[e.selectedIndex].value : e.value);
+            ctrigval = (v ? v : null);
+          }
 
-        // show/hide group
-        $f = $(this.group[tg]).parent();
-        if (enabled) {
-          $f.removeClass(config.disableClass);
-        }
-        else {
-          $f.addClass(config.disableClass);
-        }
+          // is trigger enabled?
+          enabled =
+            ((e.type === "checkbox" || e.type === "radio") && e.checked) ||
+            (e.type !== "checkbox" && e.type !== "radio" && e.value === ctrigval) ||
+            (e.nodeName === "SELECT" && e.options[e.selectedIndex].value === ctrigval);
 
-        // enable/disble fields and re-validate
-        for (f = 0; f < this.group[tg].length; f++) {
-          this.group[tg][f].disabled = !enabled;
-          // this.CheckField(this.group[tg][f]);
+          // show/hide group
+          $f = $(this.group[tg]).parent();
+          if (enabled) {
+            $f.removeClass(config.disableClass);
+          }
+          else {
+            $f.addClass(config.disableClass);
+          }
+
+          // enable/disble fields
+          for (f = 0; f < this.group[tg].length; f++) {
+            this.group[tg][f].disabled = !enabled;
+          }
+
         }
 
       }
@@ -361,7 +379,7 @@
       order = order || dmy;
 
       var ret = false;
-      date = date.replace(/^\D+|\D+$/g, "");
+      date = String(date).replace(/^\D+|\D+$/g, "");
       date = date.replace(/\D+/g, sep);
       var digit = date.split(sep, 3);
       if (digit.length == 3) {
