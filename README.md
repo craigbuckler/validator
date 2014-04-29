@@ -27,9 +27,3 @@ Notes
 -----
 
 * dates can be submitted in either DD-MM-YYYY or YYYY-MM-DD format -- check server-side
-
-
-To do:
-------
-
-* Convert select boxes to datalist elements where data-form-datalist="true" is set
