@@ -140,7 +140,7 @@
     }
 
     // browser validity available?
-    if (e.willValidate !== undefined) {
+    if (typeof e.willValidate !== "undefined") {
 
       // unsupported input type - fallback validation
       if (e.nodeName === "INPUT" && e.type !== e.getAttribute("type")) {
@@ -311,8 +311,11 @@
     // validation failed?
     if (!submit) {
 
-      // stop submit and scroll to first invalid
+      // stop submit, set focus and scroll to first invalid
       e.preventDefault();
+      if (this.field[firstInvalid].focus) {
+        this.field[firstInvalid].focus();
+      }
       $("html,body").animate({ scrollTop: $(this.field[firstInvalid]).parent().offset().top }, config.scrollToElement);
 
     }
@@ -478,6 +481,6 @@
   // <<<<<<<<< end of output logging
 
   // register forms
-  Plymouth.Modules.register('validate', Validate);
+  Plymouth.Modules.register("validate", Validate);
 
 }(jQuery));
