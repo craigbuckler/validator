@@ -175,7 +175,9 @@
       valid = true,
       val = e.value,
       type = e.getAttribute("type"),
+      chkbox = (type === "checkbox" || type === "radio"),
       required = e.getAttribute("required"),
+      minlength = e.getAttribute("minlength"),
       maxlength = e.getAttribute("maxlength"),
       min = e.getAttribute("min"),
       max = e.getAttribute("max"),
@@ -210,30 +212,24 @@
         if (valid) val = n;
         break;
 
-      default:
-        // test string length
-        valid = valid &&
-          (!min || val.length >= min) &&
-          (!max || val.length <= max);
-        break;
-
     }
 
     // value required?
     valid = valid && (!required ||
-        ((type === "checkbox" || type === "radio") && e.checked) ||
-        (type !== "checkbox" && type !== "radio" && val !== "")
-      );
+      (chkbox && e.checked) ||
+      (!chkbox && val !== "")
+    );
+
+    // minlength or maxlength set?
+    valid = valid && (chkbox || (
+      (!minlength || val.length >= minlength) &&
+      (!maxlength || val.length <= maxlength)
+    ));
 
     // test pattern
     if (valid && pattern) {
       pattern = new RegExp(pattern);
       valid = pattern.test(val);
-    }
-
-    // maxlength set
-    if (valid && maxlength && type !== "checkbox" && type !== "radio") {
-      valid = val.length <= maxlength;
     }
 
     // update field value
